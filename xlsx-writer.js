@@ -60,14 +60,23 @@ function cellXml(value, rowIndex, colIndex, defaultStyle = 0) {
     return `<c r="${ref}" t="b"${styleAttr}><v>${c.value ? 1 : 0}</v></c>`;
   }
   if (c.__xlsxType === 'link' && c.value) {
-    const formula = `HYPERLINK(&quot;${xmlEscape(c.value)}&quot;,&quot;${xmlEscape(c.label || c.value)}&quot;)`;
-    return `<c r="${ref}" s="6"><f>${formula}</f><v></v></c>`;
+    return `<c r="${ref}" s="6" t="inlineStr"><is><t xml:space="preserve">${xmlEscape(c.label || c.value)}</t></is></c>`;
   }
   const text = xmlEscape(c.value);
   return `<c r="${ref}" t="inlineStr"${styleAttr}><is><t xml:space="preserve">${text}</t></is></c>`;
 }
 
-function sheetXml(sheet) {
+function sheetLinks(sheet) {
+  const links = [];
+  (sheet.rows || []).forEach((row, r) => row.forEach((cell, c) => {
+    if (cell?.__xlsxType === 'link' && cell.value) {
+      links.push({ ref: `${colName(c)}${r + 1}`, id: `rId${links.length + 1}`, url: cell.value });
+    }
+  }));
+  return links;
+}
+
+function sheetXml(sheet, links) {
   const rows = sheet.rows || [];
   const widths = sheet.widths || [];
   const cols = widths.length
@@ -88,14 +97,22 @@ function sheetXml(sheet) {
     ? `<autoFilter ref="A${headerRows}:${colName(maxCols - 1)}${rows.length}"/>`
     : '';
   return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
 <dimension ref="${dim}"/>
 ${pane}
 <sheetFormatPr defaultRowHeight="15"/>
 ${cols}
 <sheetData>${rowXml}</sheetData>
 ${autoFilter}
+${links.length ? `<hyperlinks>${links.map(link => `<hyperlink ref="${link.ref}" r:id="${link.id}"/>`).join('')}</hyperlinks>` : ''}
 </worksheet>`;
+}
+
+function sheetLinksXml(links) {
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+${links.map(link => `<Relationship Id="${link.id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${xmlEscape(link.url)}" TargetMode="External"/>`).join('')}
+</Relationships>`;
 }
 
 function stylesXml() {
@@ -238,7 +255,12 @@ export function buildXlsx(sheets) {
     { name: 'xl/workbook.xml', data: workbookXml(sheets) },
     { name: 'xl/_rels/workbook.xml.rels', data: workbookRelsXml(sheets) },
     { name: 'xl/styles.xml', data: stylesXml() },
-    ...sheets.map((s, i) => ({ name: `xl/worksheets/sheet${i + 1}.xml`, data: sheetXml(s) }))
+    ...sheets.flatMap((s, i) => {
+      const links = sheetLinks(s);
+      const parts = [{ name: `xl/worksheets/sheet${i + 1}.xml`, data: sheetXml(s, links) }];
+      if (links.length) parts.push({ name: `xl/worksheets/_rels/sheet${i + 1}.xml.rels`, data: sheetLinksXml(links) });
+      return parts;
+    })
   ];
   return new Blob([zipStore(files)], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 }

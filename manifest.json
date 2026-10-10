@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Shopee Spending Analyzer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Analyze your Shopee purchase history locally and export a detailed Excel workbook.",
   "permissions": ["activeTab", "scripting"],
   "action": {

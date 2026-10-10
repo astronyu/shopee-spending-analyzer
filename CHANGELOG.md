@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+
+- Replaced formula-based product and shop links with native Excel hyperlinks and visible text, removing dependence on formula recalculation for link labels.
+- Added hyperlink export regression checks (`node tests/xlsx-links.mjs`).
+- Links still require product/shop identifiers in Shopee's response; this change does not invent missing identifiers.
+
 ## 1.0.1
 
 - Fixed worksheet XML element ordering that caused Microsoft Excel to repair or remove worksheet contents.

@@ -2,7 +2,7 @@
 
 Turn your Shopee purchase history into a detailed Excel report, processed locally in your browser.
 
-**Version 1.0.1** · Chrome Manifest V3 · No build step · MIT license
+**Version 1.0.2** · Chrome Manifest V3 · No build step · MIT license
 
 ## Features
 

@@ -1,0 +1,6 @@
+/work/
+/outputs/
+*.zip
+*.xlsx
+.DS_Store
+Thumbs.db

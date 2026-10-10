@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Shopee Spending Analyzer",
+  "version": "1.0.1",
+  "description": "Analyze your Shopee purchase history locally and export a detailed Excel workbook.",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_title": "Shopee Spending Analyzer",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

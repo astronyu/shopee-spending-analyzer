@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shopee Spending Analyzer</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <div class="logo">S</div>
+      <div>
+        <h1>Shopee Spending Analyzer</h1>
+        <p>Private, local purchase-history report</p>
+      </div>
+    </header>
+
+    <section id="siteCard" class="site-card">
+      <span id="siteDot" class="dot"></span>
+      <div>
+        <strong id="siteStatus">Checking current tab…</strong>
+        <span id="siteHint">Open Shopee and sign in first.</span>
+      </div>
+    </section>
+
+    <button id="scanBtn" class="primary" disabled>
+      <span>Scan purchase history</span>
+    </button>
+
+    <section id="progressBox" class="progress-box hidden" aria-live="polite">
+      <div class="spinner"></div>
+      <div>
+        <strong id="progressTitle">Scanning Shopee…</strong>
+        <span id="progressText">This may take a little while for large histories.</span>
+      </div>
+    </section>
+
+    <section id="results" class="results hidden">
+      <div class="metric featured">
+        <span>Total spent</span>
+        <strong id="totalSpent">—</strong>
+      </div>
+      <div class="metric-grid">
+        <div class="metric"><span>Orders</span><strong id="orderCount">—</strong></div>
+        <div class="metric"><span>Items</span><strong id="itemCount">—</strong></div>
+        <div class="metric"><span>Discounts</span><strong id="discountTotal">—</strong></div>
+        <div class="metric"><span>Shipping</span><strong id="shippingTotal">—</strong></div>
+      </div>
+      <div class="date-range">
+        <span id="dateRange">—</span>
+      </div>
+      <button id="exportBtn" class="primary export">Download Excel report</button>
+      <button id="rescanBtn" class="secondary">Scan again</button>
+    </section>
+
+    <section id="errorBox" class="error hidden">
+      <strong>Could not scan Shopee</strong>
+      <span id="errorText"></span>
+    </section>
+
+    <footer>
+      <span>Nothing is uploaded. Your purchase data stays in this browser.</span>
+      <span class="version">v1.0.1</span>
+    </footer>
+  </main>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
+

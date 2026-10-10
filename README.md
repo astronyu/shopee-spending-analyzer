@@ -17,6 +17,40 @@ Turn your Shopee purchase history into a detailed Excel report, processed locall
 | Items | Products, variations, quantities, prices and product links for included orders |
 | Analytics | Yearly and monthly spending, plus shops ranked by spending |
 
+## Explore your Excel report
+
+One scan gives you four ways to understand your shopping: a quick overview, an order ledger, an item breakdown and spending trends.
+
+### Summary — see the big picture
+
+See total spending, paid orders and purchased items, plus your average and largest order. Review original product value, captured savings and shipping fees, your top shop, and the first and latest available purchase dates. The detected market and currency give the figures context.
+
+**Useful for:** answering “How much have I spent, and what does a typical order cost?”
+
+### Orders — follow every order
+
+Review order numbers, dates, sellers, quantities and line-item counts alongside merchandise subtotals and amounts paid. Separate columns show captured shipping fees and discounts, seller and Shopee vouchers, coins, other discounts and total savings. Order status and **Included in Spend** explain which orders contribute to your totals. Shop links take you back to the seller.
+
+Frozen headers and Excel filters help you find a purchase or inspect a particular seller or status.
+
+**Useful for:** checking purchases and understanding the available discount breakdown.
+
+### Items — see exactly what you bought
+
+Browse product names, variations, quantities, original and paid unit prices, and item subtotals. Each row includes its order number, date, seller and returned flag. Product and shop links let you revisit purchases. This worksheet contains items from orders included in spending.
+
+**Useful for:** finding a product, reviewing repeat purchases and comparing recorded prices.
+
+### Analytics — spot your shopping patterns
+
+Compare spending by year and month, with order counts, item quantities, discounts and captured shipping. The yearly section also includes original product value. A ranked shop table shows orders, items and total spending for each seller.
+
+These are editable rows of values, ready for your own Excel charts or budgeting analysis; the export does not include charts.
+
+**Useful for:** spotting busy shopping months and finding the shops that account for most of your spending.
+
+All worksheets depend on the fields Shopee makes available. See **Accuracy and limitations** below for missing breakdowns, derived discounts and regional differences.
+
 ## Market support and validation
 
 **Malaysia is validated in the original development session. The other seven markets are supported by design, but have not been individually validated.** This is not a claim of complete compatibility across every account or order format.
@@ -75,6 +109,8 @@ Purchase-history requests go directly to the active Shopee website using your ex
 - **scripting** allows the scanner to run in that Shopee tab.
 
 Exported workbooks contain personal purchase history. Share them only as intended.
+
+Read the full [Privacy Policy](PRIVACY.md).
 
 ## Source layout
 

@@ -4,6 +4,8 @@ Turn your Shopee purchase history into a detailed Excel report, processed locall
 
 **Version 1.0.2** · Chrome Manifest V3 · No build step · MIT license
 
+**[Install from the Chrome Web Store](https://chromewebstore.google.com/detail/shopee-spending-analyzer/chhhcleeknjiicheobapinpngfglnemj)**
+
 ## Features
 
 - Scan purchase history using your existing signed-in Shopee session.
@@ -69,6 +71,14 @@ All worksheets depend on the fields Shopee makes available. See **Accuracy and l
 The extension detects the domain, currency and locale and builds links for that market. All markets currently share one parser; regional differences in order fields, vouchers, shipping, status and pagination may require future changes.
 
 ## Install
+
+### Chrome Web Store (recommended)
+
+1. Open [Shopee Spending Analyzer on the Chrome Web Store](https://chromewebstore.google.com/detail/shopee-spending-analyzer/chhhcleeknjiicheobapinpngfglnemj).
+2. Click **Add to Chrome** and confirm installation.
+3. Pin the extension for convenient access, then open your Shopee website and sign in.
+
+### Manual installation
 
 1. Choose **Code → Download ZIP** from this repository, then extract it (or clone the repository).
 2. Open `chrome://extensions` in Chrome.
